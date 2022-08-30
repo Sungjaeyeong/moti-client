@@ -1,35 +1,36 @@
-import React, { memo } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { memo } from "react";
+import { useHistory } from "react-router-dom";
+import * as Routes from "../routes";
 
 const Header = memo(({ username }) => {
   const history = useHistory();
 
   const goPosts = () => {
-    history.push('/');
+    history.push(Routes.pathConst.ROOT);
   };
 
   const goChats = () => {
-    history.push('/chats');
+    history.push(Routes.pathConst.CHATS);
   };
 
   const goMyPage = () => {
-    history.push('/mypage');
+    history.push(Routes.pathConst.MYPAGE);
   };
 
   const goLogin = () => {
-    history.push('/login');
+    history.push(Routes.pathConst.LOGIN);
   };
 
   const onLogout = () => {};
 
   return (
-    <header className='header'>
-      <div className='logo'>
+    <header className="header">
+      <div className="logo">
         <h1>Moti</h1>
         {username && <span>{username}님, 반갑습니다!</span>}
       </div>
       {username ? (
-        <nav className='menu'>
+        <nav className="menu">
           <button onClick={goPosts}>포스트</button>
           <button onClick={goChats}>채팅</button>
           <button onClick={goMyPage}>마이페이지</button>
