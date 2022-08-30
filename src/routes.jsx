@@ -1,14 +1,16 @@
-import { Switch, Route } from "react-router-dom";
-import Chats from "./pages/Chats";
-import Login from "./pages/Login";
-import MyPage from "./pages/MyPage";
-import Posts from "./pages/Posts";
+import { Switch, Route, useHistory } from 'react-router-dom';
+import Chats from './pages/Chats';
+import Login from './pages/Login';
+import MyPage from './pages/MyPage';
+import Posts from './pages/Posts';
+import SignUp from './pages/SignUp';
 
 export const pathConst = {
-  ROOT: "/",
-  CHATS: "/chats",
-  MYPAGE: "/mypage",
-  LOGIN: "/login",
+  ROOT: '/',
+  CHATS: '/chats',
+  MYPAGE: '/mypage',
+  LOGIN: '/login',
+  SIGINUP: '/signup',
 };
 
 const routes = [
@@ -28,6 +30,10 @@ const routes = [
     path: pathConst.MYPAGE,
     component: MyPage,
   },
+  {
+    path: pathConst.SIGINUP,
+    component: SignUp,
+  },
 ];
 
 export const renderRoutes = () => (
@@ -36,7 +42,14 @@ export const renderRoutes = () => (
       const { path, component } = route;
       const Component = component;
 
-      return <Route exact path={path} key={i} render={props => <Component {...props} />} />;
+      return (
+        <Route
+          exact
+          path={path}
+          key={i}
+          render={props => <Component {...props} />}
+        />
+      );
     })}
   </Switch>
 );
