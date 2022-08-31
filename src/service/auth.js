@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const baseURL = process.env.REACT_APP_MOTI_SERVER_BASE_URL;
 
@@ -13,11 +13,11 @@ export default class AuthService {
         introduce,
       })
       .then(() => {
-        alert('회원가입이 완료되었습니다.');
+        alert("회원가입이 완료되었습니다.");
       })
       .catch(err => {
         console.error(err);
-        alert('다시 시도해주세요.');
+        alert("다시 시도해주세요.");
       });
   }
 
@@ -42,10 +42,10 @@ export default class AuthService {
     return data;
   }
 
-  async me(userId) {
+  async me() {
     let data;
-    axios
-      .get(`${baseURL}/users/${userId}`, {
+    await axios
+      .get(`${baseURL}/users`, {
         withCredentials: true,
       })
       .then(res => {
@@ -59,7 +59,7 @@ export default class AuthService {
   async logout() {
     axios
       .post(
-        `${baseURL}/users/logout`,
+        `${baseURL}/logout`,
         {},
         {
           withCredentials: true,

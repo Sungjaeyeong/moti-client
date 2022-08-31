@@ -1,9 +1,11 @@
 import React, { memo } from "react";
 import { useHistory } from "react-router-dom";
 import * as Routes from "../routes";
+import { useAuth } from "../context/AuthContext";
 
 const Header = memo(({ username }) => {
   const history = useHistory();
+  const { logout } = useAuth();
 
   const goPosts = () => {
     history.push(Routes.pathConst.ROOT);
@@ -21,7 +23,9 @@ const Header = memo(({ username }) => {
     history.push(Routes.pathConst.LOGIN);
   };
 
-  const onLogout = () => {};
+  const onLogout = () => {
+    logout();
+  };
 
   return (
     <header className="header">
