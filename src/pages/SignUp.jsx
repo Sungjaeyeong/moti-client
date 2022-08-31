@@ -7,7 +7,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
-  const [job, setJob] = useState('');
+  const [job, setJob] = useState('DEV');
   const [introduce, setIntroduce] = useState('');
 
   const emptyField = () => {
@@ -70,14 +70,17 @@ const SignUp = () => {
           onChange={onChange}
           required
         />
+        직업:
+        <input name='job' type='radio' value={'PM'} onChange={onChange} />
+        PM
         <input
           name='job'
-          type='text'
-          placeholder='직업'
-          value={job}
+          type='radio'
+          value={'DEV'}
           onChange={onChange}
-          required
+          checked
         />
+        DEV
         <input
           name='introduce'
           type='text'

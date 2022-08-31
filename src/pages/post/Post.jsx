@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Posts = () => {
+const Post = () => {
   return (
     <>
       <h2>포스트 페이지</h2>
@@ -8,4 +8,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default Post;

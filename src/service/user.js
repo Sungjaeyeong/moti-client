@@ -20,7 +20,7 @@ export default class UserService {
         alert("변경되었습니다.");
         let editedUser = {
           ...user,
-          username,
+          name: username,
           introduce,
         };
         data = editedUser;
