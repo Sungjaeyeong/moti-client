@@ -1,13 +1,13 @@
-import { renderRoutes } from './routes';
-import Header from './components/Header';
-import { useAuth } from './context/AuthContext';
+import { renderRoutes } from "./routes";
+import Header from "./components/Header";
+import { useAuth } from "./context/AuthContext";
 
-function App() {
+function App(props) {
   const { user } = useAuth();
-  const Body = renderRoutes();
+  const Body = renderRoutes(props);
 
   return (
-    <div className='App'>
+    <div className="App">
       <Header username={user?.name} />
       {Body}
     </div>

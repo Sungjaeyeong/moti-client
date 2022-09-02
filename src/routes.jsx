@@ -54,20 +54,13 @@ const routes = [
   },
 ];
 
-export const renderRoutes = () => (
+export const renderRoutes = props => (
   <Switch>
     {routes.map((route, i) => {
       const { path, component } = route;
       const Component = component;
 
-      return (
-        <Route
-          exact
-          path={path}
-          key={i}
-          render={props => <Component {...props} />}
-        />
-      );
+      return <Route exact path={path} key={i} render={() => <Component {...props} />} />;
     })}
   </Switch>
 );
