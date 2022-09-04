@@ -17,7 +17,16 @@ const CreatePost = ({ postService }) => {
 
   const onSubmit = event => {
     event.preventDefault();
-    postService.createPost(title, content, user.id, attachFiles, goPosts);
+    postService
+      .createPost(title, content, user.id, attachFiles)
+      .then(() => {
+        alert("저장되었습니다.");
+        goPosts();
+      })
+      .catch(err => {
+        console.error(err);
+        alert("다시 시도해주세요.");
+      });
   };
 
   const onChange = event => {
@@ -39,12 +48,31 @@ const CreatePost = ({ postService }) => {
     <>
       <h2>포스트 생성 페이지</h2>
       <form onSubmit={onSubmit}>
-        <input name="title" type="text" placeholder="제목" value={title} onChange={onChange} required />
+        <input
+          name="title"
+          type="text"
+          placeholder="제목"
+          value={title}
+          onChange={onChange}
+          required
+        />
         <br />
-        <textarea name="content" type="text" placeholder="내용" value={content} onChange={onChange} required />
+        <textarea
+          name="content"
+          type="text"
+          placeholder="내용"
+          value={content}
+          onChange={onChange}
+          required
+        />
         <br />
         첨부파일
-        <input type="file" name="attachFile" multiple="multiple" onChange={onChange} />
+        <input
+          type="file"
+          name="attachFile"
+          multiple="multiple"
+          onChange={onChange}
+        />
         <br />
         <button type="submit">작성완료</button>
       </form>
