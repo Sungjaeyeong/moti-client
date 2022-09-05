@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
+import Comments from "../../components/Comments";
 
-const Post = ({ postService }) => {
+const Post = ({ postService, commentService }) => {
   const location = useLocation();
   const postId = location.state.postId;
   const [post, setPost] = useState({ files: [] });
@@ -35,6 +36,9 @@ const Post = ({ postService }) => {
               </div>
             );
           })}
+      </div>
+      <div>
+        <Comments postId={postId} commentService={commentService} />
       </div>
     </>
   );

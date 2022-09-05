@@ -61,14 +61,7 @@ const Posts = ({ postService }) => {
       <h2>포스트 리스트 페이지</h2>
       <div>
         <form>
-          <input
-            name="searchWord"
-            type="text"
-            placeholder="검색"
-            value={searchWord}
-            onChange={onChange}
-            required
-          />
+          <input name="searchWord" type="text" placeholder="검색" value={searchWord} onChange={onChange} required />
         </form>
         <button onClick={goCreatePost}>포스트 생성하기</button>
         <div>
@@ -76,7 +69,7 @@ const Posts = ({ postService }) => {
             <PostCard
               key={post.id}
               post={post}
-              owner={post.userId === user.id}
+              owner={user ? post.userId === user.id : false}
               onClick={onClick}
               onDelete={onDelete}
               onUpdate={onUpdate}
