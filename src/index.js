@@ -8,19 +8,21 @@ import AuthService from "./service/auth";
 import UserService from "./service/user";
 import PostService from "./service/post";
 import CommentService from "./service/comment";
+import TeamService from "./service/team";
 import { AuthProvider } from "./context/AuthContext";
 
 const authService = new AuthService();
 const userService = new UserService();
 const postService = new PostService();
 const commentService = new CommentService();
+const teamService = new TeamService();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider authService={authService} userService={userService}>
-        <App postService={postService} commentService={commentService} />
+        <App postService={postService} commentService={commentService} teamService={teamService} />
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>

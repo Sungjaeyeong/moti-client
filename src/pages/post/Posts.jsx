@@ -11,7 +11,7 @@ const Posts = ({ postService }) => {
   const { user } = useAuth();
 
   const goCreatePost = () => {
-    history.push(Routes.pathConst.CreatePost);
+    history.push(Routes.pathConst.CREATE_POST);
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Posts = ({ postService }) => {
 
   const onUpdate = postId => {
     history.push({
-      pathname: Routes.pathConst.EditPost,
+      pathname: Routes.pathConst.EDIT_POST,
       state: { postId },
     });
   };

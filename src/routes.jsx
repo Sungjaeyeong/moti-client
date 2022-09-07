@@ -7,16 +7,22 @@ import Post from "./pages/post/Post";
 import CreatePost from "./pages/post/CreatePost";
 import EditPost from "./pages/post/EditPost";
 import SignUp from "./pages/SignUp";
+import TeamList from "./pages/team/TeamList";
+import Team from "./pages/team/Team";
+import CreateTeam from "./pages/team/CreateTeam";
 
 export const pathConst = {
   ROOT: "/",
   POST: "/post",
-  CreatePost: "/createPost",
-  EditPost: "/editPost",
+  CREATE_POST: "/createPost",
+  EDIT_POST: "/editPost",
   CHATS: "/chats",
   MYPAGE: "/mypage",
   LOGIN: "/login",
   SIGINUP: "/signup",
+  TEAM_LIST: "/teamList",
+  TEAM: "team",
+  CREATE_TEAM: "/createTeam",
 };
 
 const routes = [
@@ -29,11 +35,11 @@ const routes = [
     component: Post,
   },
   {
-    path: pathConst.CreatePost,
+    path: pathConst.CREATE_POST,
     component: CreatePost,
   },
   {
-    path: pathConst.EditPost,
+    path: pathConst.EDIT_POST,
     component: EditPost,
   },
   {
@@ -51,6 +57,18 @@ const routes = [
   {
     path: pathConst.SIGINUP,
     component: SignUp,
+  },
+  {
+    path: pathConst.TEAM_LIST,
+    component: TeamList,
+  },
+  {
+    path: pathConst.TEAM,
+    component: Team,
+  },
+  {
+    path: pathConst.CREATE_TEAM,
+    component: CreateTeam,
   },
 ];
 
