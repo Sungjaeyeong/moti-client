@@ -1,5 +1,7 @@
 import { Switch, Route, useHistory } from "react-router-dom";
-import Chats from "./pages/Chats";
+import Chats from "./pages/chat/Chats";
+import CreateChat from "./pages/chat/CreateChat";
+import Chat from "./pages/chat/Chat";
 import Login from "./pages/Login";
 import MyPage from "./pages/MyPage";
 import Posts from "./pages/post/Posts";
@@ -17,6 +19,8 @@ export const pathConst = {
   CREATE_POST: "/createPost",
   EDIT_POST: "/editPost",
   CHATS: "/chats",
+  CREATE_CHAT: "/createChat",
+  CHAT: "/chat",
   MYPAGE: "/mypage",
   LOGIN: "/login",
   SIGINUP: "/signup",
@@ -49,6 +53,18 @@ const routes = [
   {
     path: pathConst.CHATS,
     component: Chats,
+  },
+  {
+    path: pathConst.CREATE_CHAT,
+    component: CreateChat,
+  },
+  {
+    path: pathConst.CHAT,
+    component: Chat,
+  },
+  {
+    path: pathConst.CREATE_TEAM,
+    component: CreateTeam,
   },
   {
     path: pathConst.MYPAGE,
