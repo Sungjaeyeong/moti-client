@@ -15,6 +15,10 @@ const Header = memo(({ username }) => {
     history.push(Routes.pathConst.CHATS);
   };
 
+  const goTeams = () => {
+    history.push(Routes.pathConst.TEAM_LIST);
+  };
+
   const goMyPage = () => {
     history.push(Routes.pathConst.MYPAGE);
   };
@@ -38,6 +42,7 @@ const Header = memo(({ username }) => {
         <nav className="menu">
           <button onClick={goPosts}>포스트</button>
           <button onClick={goChats}>채팅</button>
+          <button onClick={goTeams}>팀</button>
           <button onClick={goMyPage}>마이페이지</button>
           <button onClick={onLogout}>로그아웃</button>
         </nav>

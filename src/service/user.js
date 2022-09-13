@@ -32,4 +32,8 @@ export default class UserService {
       });
     return data;
   }
+
+  async getAllUser() {
+    return await axios.get(`${baseURL}/users/all`);
+  }
 }
