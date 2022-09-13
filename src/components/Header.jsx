@@ -35,7 +35,7 @@ const Header = memo(({ username }) => {
   return (
     <header className="header">
       <div className="logo">
-        <h1>Moti</h1>
+        <h1 onClick={goPosts}>Moti</h1>
         {username && <span>{username}님, 반갑습니다!</span>}
       </div>
       {username ? (

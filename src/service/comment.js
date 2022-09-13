@@ -19,8 +19,8 @@ export default class CommentService {
   }
 
   // 댓글 조회
-  async getComments(postId) {
-    return await axios.get(`${baseURL}/comments?postId=${postId}`);
+  async getComments(postId, page) {
+    return await axios.get(`${baseURL}/comments?postId=${postId}&page=${page}`);
   }
 
   // 댓글 수정
@@ -39,6 +39,8 @@ export default class CommentService {
 
   // 댓글 삭제
   async deleteComment(commentId) {
-    return await axios.delete(`${baseURL}/comments/${commentId}`, { withCredentials: true });
+    return await axios.delete(`${baseURL}/comments/${commentId}`, {
+      withCredentials: true,
+    });
   }
 }

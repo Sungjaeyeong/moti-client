@@ -8,7 +8,7 @@ const AuthGuard = ({ children }) => {
   const { user } = useAuth();
 
   if (!user) {
-    return <Redirect to={Routes.pathConst.login} />;
+    return <Redirect to={Routes.pathConst.LOGIN} />;
   }
 
   return <>{children}</>;

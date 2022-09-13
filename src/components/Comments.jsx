@@ -7,11 +7,13 @@ const Comments = ({ commentService, postId }) => {
   const { user } = useAuth();
   const [commentList, setCommentList] = useState([]);
   const [content, setContent] = useState("");
+  const [count, setCount] = useState(0);
 
-  const fetchComments = () => {
+  const fetchComments = (page = 1) => {
     commentService
-      .getComments(postId)
+      .getComments(postId, page)
       .then(res => {
+        setCount(res.data.count);
         setCommentList(res.data.comments);
       })
       .catch(err => {
@@ -46,7 +48,14 @@ const Comments = ({ commentService, postId }) => {
     return (
       <div>
         <form onSubmit={onSubmit}>
-          <textarea name="content" type="text" placeholder="댓글 입력" value={content} onChange={onChange} required />
+          <textarea
+            name="content"
+            type="text"
+            placeholder="댓글 입력"
+            value={content}
+            onChange={onChange}
+            required
+          />
           <br />
           <button type="submit">등록</button>
         </form>
@@ -67,7 +76,11 @@ const Comments = ({ commentService, postId }) => {
   const onDelete = commentId => {
     commentService
       .deleteComment(commentId) //
-      .then(() => setCommentList(comments => comments.filter(comment => comment.contentId !== commentId)))
+      .then(() =>
+        setCommentList(comments =>
+          comments.filter(comment => comment.contentId !== commentId)
+        )
+      )
       .catch(err => {
         console.error(err);
         alert("다시 시도해주세요.");
@@ -78,8 +91,33 @@ const Comments = ({ commentService, postId }) => {
     return (
       <div>
         {commentList.map(comment => {
-          return <CommentCard key={comment.contentId} comment={comment} onDelete={onDelete} onUpdate={onUpdate} user={user} />;
+          return (
+            <CommentCard
+              key={comment.contentId}
+              comment={comment}
+              onDelete={onDelete}
+              onUpdate={onUpdate}
+              user={user}
+            />
+          );
         })}
+      </div>
+    );
+  };
+
+  const renderPageNum = () => {
+    const pageCount = Math.ceil(count / 5);
+    let page = [];
+    for (let i = 1; i <= pageCount; i++) {
+      page.push(i);
+    }
+    return (
+      <div>
+        {page.map(el => (
+          <button onClick={() => fetchComments(el)} key={el}>
+            {el}
+          </button>
+        ))}
       </div>
     );
   };
@@ -88,6 +126,7 @@ const Comments = ({ commentService, postId }) => {
     <div>
       <div>{renderWriteComment()}</div>
       <div>{renderCommentList()}</div>
+      <div>{renderPageNum()}</div>
     </div>
   );
 };
