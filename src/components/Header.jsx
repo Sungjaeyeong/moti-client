@@ -25,6 +25,7 @@ const Header = memo(({ username }) => {
 
   const onLogout = () => {
     logout();
+    history.push(Routes.pathConst.ROOT);
   };
 
   return (

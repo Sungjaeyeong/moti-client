@@ -1,3 +1,4 @@
+import React, { Fragment } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import Chats from "./pages/Chats";
 import Login from "./pages/Login";
@@ -7,6 +8,7 @@ import Post from "./pages/post/Post";
 import CreatePost from "./pages/post/CreatePost";
 import EditPost from "./pages/post/EditPost";
 import SignUp from "./pages/SignUp";
+import AuthGuard from "./components/AuthGuard";
 
 export const pathConst = {
   ROOT: "/",
@@ -31,10 +33,12 @@ const routes = [
   {
     path: pathConst.CreatePost,
     component: CreatePost,
+    guard: AuthGuard,
   },
   {
     path: pathConst.EditPost,
     component: EditPost,
+    guard: AuthGuard,
   },
   {
     path: pathConst.LOGIN,
@@ -43,10 +47,12 @@ const routes = [
   {
     path: pathConst.CHATS,
     component: Chats,
+    guard: AuthGuard,
   },
   {
     path: pathConst.MYPAGE,
     component: MyPage,
+    guard: AuthGuard,
   },
   {
     path: pathConst.SIGINUP,
@@ -59,8 +65,20 @@ export const renderRoutes = props => (
     {routes.map((route, i) => {
       const { path, component } = route;
       const Component = component;
+      const Guard = route.guard || Fragment;
 
-      return <Route exact path={path} key={i} render={() => <Component {...props} />} />;
+      return (
+        <Route
+          exact
+          path={path}
+          key={i}
+          render={() => (
+            <Guard>
+              <Component {...props} />
+            </Guard>
+          )}
+        />
+      );
     })}
   </Switch>
 );
