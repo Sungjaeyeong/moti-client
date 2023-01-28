@@ -13,9 +13,10 @@ const CommentCard = ({ comment, onUpdate, onDelete, user }) => {
     <div>
       <span>댓글: {comment.content} / </span>
       <span>작성자: {comment.userName} / </span>
-      {user.id === comment.userId && (
+      {user?.id === comment.userId && (
         <span>
-          <button onClick={() => setIsOpen(true)}>수정</button> / <button onClick={() => onDelete(comment.contentId)}>삭제</button>
+          <button onClick={() => setIsOpen(true)}>수정</button> /{" "}
+          <button onClick={() => onDelete(comment.contentId)}>삭제</button>
         </span>
       )}
       {isOpen && (

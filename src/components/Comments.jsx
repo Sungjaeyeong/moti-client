@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import * as Routes from "../routes";
 import CommentCard from "./CommentCard";
-import EditCommentForm from "./EditCommentForm";
 
 const Comments = ({ commentService, postId }) => {
+  const history = useHistory();
   const { user } = useAuth();
   const [commentList, setCommentList] = useState([]);
   const [content, setContent] = useState("");
@@ -28,6 +30,10 @@ const Comments = ({ commentService, postId }) => {
 
   const onSubmit = event => {
     event.preventDefault();
+    if (!user) {
+      history.push(Routes.pathConst.LOGIN);
+      return;
+    }
     commentService
       .writeComment(content, postId, user.id)
       .then(() => {
