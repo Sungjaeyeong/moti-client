@@ -19,7 +19,6 @@ const Chat = ({ chatService }) => {
     chatService
       .getChatData(chatId)
       .then(res => {
-        console.log(res.data);
         setChatData(res.data.responseChatDto);
         setText(res.data.responseChatDto.chatName);
         setMessages(res.data.messages);
@@ -35,8 +34,9 @@ const Chat = ({ chatService }) => {
     const {
       target: { name, value },
     } = event;
+    console.log(name);
     switch (name) {
-      case "teamName":
+      case "chatName":
         return setText(value);
       case "message":
         return setMessage(value);
@@ -79,20 +79,37 @@ const Chat = ({ chatService }) => {
   return (
     <>
       <h2>채팅방</h2>
-      <input name="chatName" type="text" placeholder="채팅방 이름 변경" value={text} onChange={onChange} />
+      <input
+        name="chatName"
+        type="text"
+        placeholder="채팅방 이름 변경"
+        value={text}
+        onChange={onChange}
+      />
       <button onClick={changeChatName}>채팅방 이름 변경</button>
       <div>
         {messages.map(el => {
           return (
             <div key={el.messageId}>
               {el.message}
-              {el.userId === user.id && <button onClick={() => deleteMessage(el.messageId)}>삭제</button>}
+              {el.userId === user.id && (
+                <button onClick={() => deleteMessage(el.messageId)}>
+                  삭제
+                </button>
+              )}
             </div>
           );
         })}
       </div>
       <form onSubmit={onSubmit}>
-        <input name="message" type="text" placeholder="메세지 입력" value={message} onChange={onChange} required />
+        <input
+          name="message"
+          type="text"
+          placeholder="메세지 입력"
+          value={message}
+          onChange={onChange}
+          required
+        />
         <br />
         <button type="submit">전송</button>
       </form>
